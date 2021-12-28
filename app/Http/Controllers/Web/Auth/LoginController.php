@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admins\Auth;
+namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
+use function redirect;
+use function view;
 
 class LoginController extends Controller
 {
@@ -73,6 +75,16 @@ class LoginController extends Controller
     }
 
     /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username(): string
+    {
+        return 'email';
+    }
+
+    /**
      * Validate the user login request.
      *
      * @param Request $request
@@ -81,10 +93,18 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $request->validate([
-            $this->username() => 'required|email',
-            'password' => 'required|string',
-        ]);
+        if (is_numeric($request->email)) {
+            $request->validate([
+                'email' => 'required|phone:JO',
+                'password' => 'required|string',
+            ]);
+        } else {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string',
+            ]);
+        }
+
     }
 
     /**
@@ -95,6 +115,9 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request): array
     {
-        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'status' => 1];
+        $name = is_numeric($request->email) ? 'mobile' : 'email';
+
+        return [$name => $request->email, 'password' => $request->password, 'status' => 1];
     }
+
 }
