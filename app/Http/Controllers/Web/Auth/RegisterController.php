@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cities\City;
 use App\Models\Users\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -54,13 +55,16 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm(): View
     {
-        return view('auth.register');
+        $cities = City::select('id', 'name')->whereStatus(true)->get();
+
+        return view('auth.register')
+            ->with('cities', $cities);
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
@@ -70,6 +74,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'mobile' => 'required|min:10|phone:JO|unique:users',
+            'city_id' => 'required|exists:cities,id',
 
         ]);
     }
@@ -77,7 +82,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return User
      */
     protected function create(array $data): User
@@ -88,6 +93,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'mobile' => $data['mobile'],
             'role' => 'customer',
+            'city_id' => $data['city_id'],
         ]);
     }
 }

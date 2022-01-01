@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed $name
+ * @property mixed $country_id
+ * @property bool|mixed $status
+ * @method static where(string $string, mixed $id)
+ */
 class City extends Model
 {
     protected $fillable =
