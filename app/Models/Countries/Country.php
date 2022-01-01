@@ -6,6 +6,12 @@ use App\Models\Cities\City;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed $id
+ * @property mixed $name
+ * @property mixed $code
+ * @property bool|mixed $status
+ */
 class Country extends Model
 {
     protected $fillable =
