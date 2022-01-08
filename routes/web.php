@@ -4,7 +4,7 @@ use \App\Http\Controllers\Web\Auth\RegisterController;
 use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\Web\Cards\CardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('show.login');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('show.register');
 Route::post('register', [RegisterController::class, 'register'])->name('register');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('card/search/{pointOfSale}', [CardController::class, 'search'])->name('card.search');
+
+});

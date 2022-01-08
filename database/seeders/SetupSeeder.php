@@ -16,8 +16,6 @@ class SetupSeeder extends Seeder
      */
     public function run()
     {
-
-
         $CheckCountry = Country::all();
 
         if ($CheckCountry->isEmpty()) {
@@ -36,14 +34,13 @@ class SetupSeeder extends Seeder
                     $checkCity = City::where('country_id', $country->id)->where('name', $city['name'])->get();
 
                     if ($checkCity->isEmpty()) {
-                        $city = new City();
-                        $city->name = $data['name'];
-                        $city->country_id = $country->id;
-                        $city->status = true;
-                        $city->save();
+                        $cityInsert = new City();
+                        $cityInsert->name = $city['name'];
+                        $cityInsert->country_id = $country->id;
+                        $cityInsert->status = true;
+                        $cityInsert->save();
                     }
                 }
-
 
             }
 

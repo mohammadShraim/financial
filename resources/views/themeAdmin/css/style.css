@@ -1,0 +1,47 @@
+.page-wrapper{
+    background: white;
+}
+
+.card-rounded{
+    border-radius: 1.25rem !important;
+}
+
+.user-profile {
+    position: relative;
+    background-size: cover
+}
+
+.user-profile .profile-img {
+    width: 70px;
+    margin: 0 auto;
+    padding: 10px 0 5px 0;
+    border-radius: 100%;
+}
+
+.user-profile .profile-img img {
+    width: 100%;
+    padding: 5px;
+    color: blue;
+    border: 2px solid rgba(15, 10, 222, 1.2);
+    border-radius: 100%
+}
+
+.user-profile .profile-text {
+    padding: 5px 0px;
+    position: relative;
+    text-align: center;
+    color: #1976d2;
+}
+
+.btn-circle.btn-sm {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 8px;
+    text-align: center;
+}
+
+
+
+

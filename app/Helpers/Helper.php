@@ -3,7 +3,9 @@
 
 namespace App\Helpers;
 
+use App\Models\Users\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 class Helper
@@ -92,6 +94,29 @@ class Helper
     final public static function getDataByConfig(string $file): iterable
     {
         return Config::get($file);
+    }
+
+
+    /**
+     * @return string[]
+     */
+    final public static function getStylePointOfSaleStatus(): array
+    {
+        return [
+            '<span class="btn btn-dark btn-circle btn-sm">' . 'Suspended' . '</span>',
+            '<span class="btn btn-success btn-circle btn-sm">' . 'Active' . '</span>',
+            '<span class="btn btn-warning btn-circle btn-sm">' . 'UnActive' . '</span>',
+            '<span class="btn btn-danger btn-circle btn-sm">' . 'Blocked' . '</span>'
+        ];
+
+    }
+
+    /**
+     * @return bool
+     */
+    final public static function isAdmin(): bool
+    {
+        return Auth::user()->role == User::$ADMIN;
     }
 
 }

@@ -17,9 +17,14 @@ class PointOfSale extends Model
         'lng',
         'status',
         'logo',
-        'rank_id'
+        'rank_id',
+        'old_id',
     ];
 
+    static $Suspended = 1;
+    static $Active = 2;
+    static $UnActive = 3;
+    static $Blocked = 4;
     /**
      * @return BelongsTo
      */

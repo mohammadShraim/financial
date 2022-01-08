@@ -11,5 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.copy('resources/views/admins/themeAdmin', 'public', true);
+mix.copy('resources/views/themeAdmin', 'public', true);
 
