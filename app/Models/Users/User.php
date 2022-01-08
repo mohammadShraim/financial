@@ -15,6 +15,9 @@ class User extends Authenticatable
 {
     use HasApiTokens;
 
+    static $CUSTOMER = 'customer';
+    static $ADMIN = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *
