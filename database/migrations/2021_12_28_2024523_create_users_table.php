@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('otp')->nullable();
             $table->boolean('verified')->default(0);
-            $table->boolean('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(\App\Models\PointOfSales\PointOfSale::$Suspended);
             $table->string('role')->nullable();
             $table->foreignId('point_of_sale_id')->nullable()->constrained('point_of_sales')->nullOnDelete();
             $table->foreignId('city_id')->nullable()->constrained('cities')->nullOnDelete();

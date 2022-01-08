@@ -19,10 +19,10 @@ class CreatePointOfSalesTable extends Migration
             $table->string('location');
             $table->string('lat');
             $table->string('lng');
-            $table->boolean('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(\App\Models\PointOfSales\PointOfSale::$Suspended);
             $table->string('logo');
             $table->foreignId('rank_id')->constrained('ranks')->cascadeOnDelete()->cascadeOnUpdate();
-
+            $table->unsignedBigInteger('old_id')->nullable();
             $table->timestamps();
         });
     }
