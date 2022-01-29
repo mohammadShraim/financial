@@ -60,14 +60,14 @@ jQuery('#to_delivery_date_without').datepicker({
     orientation: 'bottom'
 });
 
-jQuery('.ajeer-time-picker').datepicker({
+jQuery('.financial-time-picker').datepicker({
     autoclose: true,
     format: 'yyyy-mm-dd',
     todayHighlight: true,
     orientation: 'bottom'
 });
 
-jQuery('.ajeer-date-time-picker').datetimepicker({
+jQuery('.financial-date-time-picker').datetimepicker({
     autoclose: true,
     format: 'yyyy-mm-dd hh:ii',
     todayHighlight: true,
